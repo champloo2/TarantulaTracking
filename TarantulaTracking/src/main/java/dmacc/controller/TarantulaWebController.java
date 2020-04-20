@@ -108,9 +108,11 @@ public class TarantulaWebController {
 	}
 	
 	@GetMapping ("/inputAMolt/{id}")
-	public String addNewManeuver (@PathVariable("id") long id, Model model) 
+	public String addNewMolt (@PathVariable("id") long id, Model model) 
 	{
+		System.out.print("*************** " + id + " *****************");
 	Tarantula t = tRepo.findById(id).orElse(null);
+		
 	Molt m = new Molt(t);
 	model.addAttribute("newMolt", m);
 	return "inputMolt";  //earlier, this said "index" and it was not working
