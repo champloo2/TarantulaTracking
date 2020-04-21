@@ -7,12 +7,12 @@ import dmacc.beans.Molt;
 public class MoltAttribute {
 	
 	private long appID;
-	private List <Molt> maneuverList;
+	private List <Molt> moltList;
 	
-	public MoltAttribute(long appID, List<Molt> maneuverList) {
+	public MoltAttribute(long appID, List<Molt> moltList) {
 		super();
 		this.appID = appID;
-		this.maneuverList = maneuverList;
+		this.moltList = moltList;
 	}
 
 	public long getAppID() {
@@ -23,12 +23,12 @@ public class MoltAttribute {
 		this.appID = appID;
 	}
 
-	public List<Molt> getManeuverList() {
-		return maneuverList;
+	public List<Molt> getmoltList() {
+		return moltList;
 	}
 
-	public void setManeuverList(List<Molt> maneuverList) {
-		this.maneuverList = maneuverList;
+	public void setmoltList(List<Molt> moltList) {
+		this.moltList = moltList;
 	}
 	
 	

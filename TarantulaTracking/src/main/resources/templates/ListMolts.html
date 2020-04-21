@@ -7,13 +7,9 @@
 </head>
 <body>
 <form>
-<table>
-<tr th:each="currentMolt : ${moltsByT}" >
-<td th:text="${currentMolt.id}" />
-<td th:text="${currentMolt.date}" />
-<td><a th:href="@{/delete/{id}(id=${currentTarantula.id})}">Delete</a></td>
-</tr>
-</table>
+
+
+
 <a href="/inputAMolt/3">add a molt</a>
 </form>
 

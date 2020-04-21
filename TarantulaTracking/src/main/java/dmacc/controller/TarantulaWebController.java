@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import dmacc.attributes.MoltAttribute;
 import dmacc.beans.Molt;
 import dmacc.beans.Tarantula;
 import dmacc.repository.MoltRepository;
@@ -79,30 +80,29 @@ public class TarantulaWebController {
 	public String viewMoltsByTId(@PathVariable("id") long id, Model model) 
 	{
 		
-	/*	
-	Tarantula t = tRepo.findById(id).orElse(null);
-	List<Molt> listByT=new ArrayList<Molt>();
-	for (Molt m : mRepo.findAll())
+	
+	List<Molt> listByT= new ArrayList<Molt>();
+	//the program does not line when you try to iterate through mRepo.findAll()
+	
+	//List<Molt> allMolts = mRepo.findAll();
+	
+//
+	//for  (Molt m : allMolts)
 	{
-		if(t.getId() == m.getTarantula().getId())
+		//
+		//if(m.getTarantula().getId() == id)
 		{
-		listByT.add(m);
+		//listByT.add(m);
+	//		System.out.println ("************hello from inside four loop********" + m.getId());
 		}
-	} 
+	} 	
+	System.out.println ("************hello from OUTSIDE four loop********");
 	
-	
-	//MoltAttribute mAttribute = new MoltAttribute(id, listByApp);
-	//create a new object with appID(type long), and lisyByApp array (type list)
-	//passobject as attribute
-	
-	//on html, attribute.appID will be the app id
-	//attricubute.listByApp for each will be the iteration
+	//MoltAttribute mAttribute = new MoltAttribute(id, listByT);
+	//model.addAttribute("moltsByT", mAttribute);
 	
 	
 
-	model.addAttribute("moltsByT", listByT);
-	
-	*/
 	return "ListMolts";
 	
 	}
@@ -110,9 +110,8 @@ public class TarantulaWebController {
 	@GetMapping ("/inputAMolt/{id}")
 	public String addNewMolt (@PathVariable("id") long id, Model model) 
 	{
-		System.out.print("*************** " + id + " *****************");
+		System.out.print("***************" + id);
 	Tarantula t = tRepo.findById(id).orElse(null);
-		
 	Molt m = new Molt(t);
 	model.addAttribute("newMolt", m);
 	return "inputMolt";  //earlier, this said "index" and it was not working
