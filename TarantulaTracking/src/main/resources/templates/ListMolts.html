@@ -8,17 +8,16 @@
 <body>
 <form>
 <table>
-<tr th:each="currentMolt : ${moltbytId}" >
-<td th:text="${currentMolt.id}" />
-<td th:text="${currentMolt.moltDate}" />
-<td><a href="/inputAMolt/tId">add a molt</a></td>
-<td><a th:href="@{/delete/{id}(id=${currentTarantula.id})}">Delete</a></td>
+<tr th:each="currentMolt: ${moltbytId}" >
+	<td th:text="${currentMolt.moltId}" />
+	<td th:text="${currentMolt.moltDate}" />
+	<td th:text="${currentMolt.newLegSpan}" />
+	<td><a th:href="@{/delete/{id}(id=${currentMolt.moltId})}">Delete</a></td>
 </tr>
 </table>
-<a href="/inputAMolt/tId">add a molt</a>
+	<a th:href="@{/inputAMolt/{id}(id=${currentTarantulaId})}">add a molt</a>
+
 </form>
-<a href="/inputAMolt/{{id}(id=2)}">Add a Molt</a>
-<a href="@{/inputAMolt/{id}(id=2)}">View Maneuvers</a>
-<a href="../inputTarantula">Add a new Tarantula</a>
+
 </body>
 </html>
