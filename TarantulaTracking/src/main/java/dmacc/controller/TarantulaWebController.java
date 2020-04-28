@@ -1,6 +1,5 @@
 package dmacc.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,7 @@ public class TarantulaWebController {
 
 	@Autowired
 	TarantulaRepository tRepo;
+	@Autowired
 	MoltRepository mRepo;
 	
 	
@@ -79,9 +79,20 @@ public class TarantulaWebController {
 	@GetMapping("/listMoltsByTId/{id}")
 	public String viewMoltsByTId(@PathVariable("id") long id, Model model) 
 	{
-		
+		Tarantula t = tRepo.findById(id).orElse(null);
+		System.out.println(t.toString());
 	
-	List<Molt> listByT= mRepo.findByTid(id);
+		List<Molt> listofMoltsByTarantula= mRepo.findByTarantula(t);
+		
+		
+		if(listofMoltsByTarantula.isEmpty()) {
+			//no molts present for t - get the id and pass it over to add a new molt		
+			return "inputAMolt/"+t.getId();
+		}
+		//if a molt exists, pass the list over and the id of the t
+		model.addAttribute("moltbytId", listofMoltsByTarantula); // all the molts for a t
+		model.addAttribute("currentTarantulaId", t.getId()); //current t
+
 	return "ListMolts";
 	
 	//the program does not line when you try to iterate through mRepo.findAll()
