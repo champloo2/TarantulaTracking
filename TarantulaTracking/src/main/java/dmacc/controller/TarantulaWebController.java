@@ -58,14 +58,19 @@ public class TarantulaWebController {
 	
 	@GetMapping("/edit/{id}")
 	public String showUpdateContact(@PathVariable("id") long id,Model model) {
+
 	Tarantula t = tRepo.findById(id).orElse(null);
+	
 	model.addAttribute("newTarantula", t);
+	System.out.println("********Tarantula ID: " + t.getTId() +"/edit*********");
 	return "inputTarantula";
 	}
 	
 	@PostMapping("/update/{id}")
 	public String reviseTarantula(Tarantula t, Model model) {
+	System.out.println("********Tarantula ID: " + t.getTId() +"/update*********");
 	tRepo.save(t);
+	System.out.println("********Tarantula ID: " + t.getTId() +" after save*********");
 	return viewAllTarantulas(model);
 	}
 	
@@ -82,35 +87,13 @@ public class TarantulaWebController {
 	public String viewMoltsByTId(@PathVariable("id") long id, Model model) 
 	{
 		
-	
-	//List<Molt> listByT= mRepo.findByTid(id);
-
+		System.out.print("***************"+ " HELLO WATS UP "+ id+ "**********");
+	List<Molt> listByT= mRepo.findBytID(id);
+	System.out.print("***************"+ " HELLO WATS UP size "+ listByT.size()+ "**********");
 	//mRepo.findAll().forEach(listByT::add);
-	//model.addAttribute("tID", id);
+	//model.addAttribute("listMoltsByT", listByT);
 	return "ListMolts";
 	
-	//the program does not line when you try to iterate through mRepo.findAll()
-	
-	//List<Molt> allMolts = mRepo.findAll();
-	
-//
-	//for  (Molt m : allMolts)
-	//{
-		//
-		//if(m.getTarantula().getId() == id)
-		//{
-		//listByT.add(m);
-	//		System.out.println ("************hello from inside four loop********" + m.getId());
-		//}
-	//} 	
-	//System.out.println ("************hello from OUTSIDE four loop********");
-	
-	//MoltAttribute mAttribute = new MoltAttribute(id, listByT);
-	//model.addAttribute("moltsByT", mAttribute);
-	
-	//model.addAttribute("moltsByTarantula", mRepo.findByTarantula());
-
-	//return "ListMolts";
 	
 	}
 	
@@ -118,7 +101,9 @@ public class TarantulaWebController {
 	public String addNewMolt (@PathVariable("id") long id, Model model) 
 	{
 	Tarantula t = tRepo.getOne(id);
+	
 	Molt m = new Molt(t);
+	
 	model.addAttribute("newMolt", m);
 	return "inputMolt";  //earlier, this said "index" and it was not working
 	
@@ -126,7 +111,6 @@ public class TarantulaWebController {
 	
 	@PostMapping("/inputAMolt")
 	public String addNewMolt (@ModelAttribute Molt m,Model model) {
-		System.out.print("***************" + m.getMoltDate() + " HELLO WATS UP "+ "**********");
 	mRepo.save(m);  //NOT SAVING
 	
 	return viewAllTarantulas(model);

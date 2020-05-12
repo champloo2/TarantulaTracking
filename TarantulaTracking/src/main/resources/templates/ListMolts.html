@@ -8,17 +8,14 @@
 <body>
 <form>
 <table>
-<tr>
-<td th:text="${tID}" />
-</td>
+<tr th:each="currentMolt : ${listMoltsByT}" >
+<td th:text="${currentMolt.moltDate}" />
+<td th:text="${currentMolt.newLegSpan}" />
 </tr>
 </table>
- <p th:text="${tID}">Test</p>
 
-<a href="/inputAMolt">add a molt</a>
 </form>
 
-<a th:href="@{/inputAMolt/tID}">input a molt</a>
 <a th:href="@{/viewAll}">View aalll Tarantulas</a>
 </body>
 </html>
