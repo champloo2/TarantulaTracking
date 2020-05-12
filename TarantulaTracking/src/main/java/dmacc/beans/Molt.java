@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
@@ -23,11 +24,12 @@ public class Molt {
 	private long moltId;
 	private String moltDate;
 	private double newLegSpan;
+	private long tID;
 	
 
 	
 	@ManyToOne (cascade= {CascadeType.REFRESH} ,fetch = FetchType.LAZY)
-	// do i need this? @JoinColumn(name="spider_ID",referencedColumnName="ID")
+	//@JoinColumn(name="tID",referencedColumnName="tId")
 	private Tarantula tarantula;
 	
 	
@@ -35,6 +37,9 @@ public class Molt {
 	public Molt (Tarantula t)
 	{
 		this.tarantula = t;
+		
+		this.tID= t.getTId();
+		System.out.print("***************"+ " HELLO WATS UP FROM MOLT CLASS this.tid"+ this.tID+ "**********");
 	}
 	
 	
