@@ -111,6 +111,7 @@ public class TarantulaWebController {
 	
 	@PostMapping("/inputAMolt")
 	public String addNewMolt (@ModelAttribute Molt m,Model model) {
+		System.out.print("***************"+ " HELLO WATS UP size "+ m.getTarantula().getTId()+ "**********");
 	mRepo.save(m);  //NOT SAVING
 	
 	return viewAllTarantulas(model);

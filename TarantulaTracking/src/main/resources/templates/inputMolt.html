@@ -5,6 +5,7 @@
 </head>
 <body>
 <form th:object="${newMolt}" th:action= "@{/inputAMolt}" method='POST'>
+<input type = "hidden" th:field="*{tarantula}"><br />
 Date: <input name="moltDate" size="20" th:field="*{moltDate}"><br />
 New Leg Span: <input name="newLegSpan" size="20" th:field="*{newLegSpan}"><br />
 <input name="submit" type="submit" value="submit" />
