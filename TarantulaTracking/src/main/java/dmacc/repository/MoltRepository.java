@@ -16,7 +16,7 @@ public interface MoltRepository extends JpaRepository <Molt, Long> {
 	//@Query("select m, t.id FROM Molt m JOIN Tarantula t ON " + "t.id = m.tId")
 
 	//List<Molt> findByTarantula(Tarantula t);
-	List<Molt> findBytID(long tID);
+	List<Molt> findByTarantula(Tarantula t);
 	
 	
 	

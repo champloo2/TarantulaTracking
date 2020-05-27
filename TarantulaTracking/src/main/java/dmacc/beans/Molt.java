@@ -24,7 +24,6 @@ public class Molt {
 	private long moltId;
 	private String moltDate;
 	private double newLegSpan;
-	private long tID;
 	
 
 	
@@ -37,9 +36,8 @@ public class Molt {
 	public Molt (Tarantula t)
 	{
 		this.tarantula = t;
-		
-		this.tID= t.getTId();
-		System.out.print("***************"+ " HELLO WATS UP FROM MOLT CLASS this.tid"+ this.tID+ "**********");
+
+		System.out.print("***************"+ " HELLO WATS UP FROM MOLT CLASS this.tid"+ this.tarantula.getTId()+ "**********");
 	}
 	
 	

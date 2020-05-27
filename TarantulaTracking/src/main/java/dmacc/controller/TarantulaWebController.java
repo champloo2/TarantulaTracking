@@ -88,10 +88,11 @@ public class TarantulaWebController {
 	{
 		
 		System.out.print("***************"+ " HELLO WATS UP "+ id+ "**********");
-	List<Molt> listByT= mRepo.findBytID(id);
-	System.out.print("***************"+ " HELLO WATS UP size "+ listByT.size()+ "**********");
+		Tarantula t = tRepo.getOne(id);
+	List<Molt> listByT= mRepo.findByTarantula(t);
+	System.out.print("***************"+ " HELLO WATS UP size "+ listByT.size()+ "**********  ID: " + listByT.toString());
 	//mRepo.findAll().forEach(listByT::add);
-	//model.addAttribute("listMoltsByT", listByT);
+	model.addAttribute("listMoltsByT", listByT);
 	return "ListMolts";
 	
 	
@@ -100,9 +101,11 @@ public class TarantulaWebController {
 	@GetMapping ("/inputAMolt/{id}")
 	public String addNewMolt (@PathVariable("id") long id, Model model) 
 	{
+	System.out.println("********* " + id + " ******* inputAMolt/id***************");
 	Tarantula t = tRepo.getOne(id);
-	
+	System.out.println("********* " + t.getTId() + " ****** tarantula object id ***************");
 	Molt m = new Molt(t);
+	System.out.println("********* " + m.getTarantula().getTId() + " ****** molt object T ID ***************");
 	
 	model.addAttribute("newMolt", m);
 	return "inputMolt";  //earlier, this said "index" and it was not working
