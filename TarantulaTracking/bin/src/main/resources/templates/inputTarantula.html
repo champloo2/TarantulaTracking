@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add a new Tarantula</title>
+</head>
+<body>
+<form th:object="${newTarantula}" th:action= "@{/update/{id}(id=${newTarantula.tId})}" method='POST'>
+<input type = "hidden" th:field="*{tId}"><br />
+Name: <input name="nameOfTarantula" size="20" th:field="*{name}"><br />
+Species: <input name="tSpecies" size="20" th:field="*{species}"><br />
+<input name="submit" type="submit" value="submit" />
+</form>
+<a href="viewAll">View all Tarantulas</a>
+</body>
+</html>
