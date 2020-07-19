@@ -93,6 +93,7 @@ public class TarantulaWebController {
 	System.out.print("***************"+ " HELLO WATS UP size "+ listByT.size()+ "**********  ID: " + listByT.toString());
 	//mRepo.findAll().forEach(listByT::add);
 	model.addAttribute("listMoltsByT", listByT);
+	model.addAttribute("tID", id);
 	return "ListMolts";
 	
 	
