@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 //import dmacc.attributes.MoltAttribute;
 import dmacc.beans.Molt;
@@ -73,15 +74,30 @@ public class TarantulaWebController {
 	System.out.println("********Tarantula ID: " + t.getTId() +" after save*********");
 	return viewAllTarantulas(model);
 	}
-	
+	/*
 	@GetMapping("/delete/{id}")
 	public String deleteTarantula(@PathVariable("id") long id, Model model) 
 	{
+		
 	Tarantula t = tRepo.findById(id).orElse(null);
 	tRepo.delete(t);
 	return viewAllTarantulas(model);
 	
 	}
+	*/
+	
+	
+	@GetMapping("/delete")
+	public String deleteTarantula(@RequestParam(value = "tRadio") long id, Model model) 
+	{
+	
+	Tarantula t = tRepo.findById(id).orElse(null);
+	tRepo.delete(t);
+	return viewAllTarantulas(model);
+	
+	}
+	
+	
 	
 	@GetMapping("/listMoltsByTId/{id}")
 	public String viewMoltsByTId(@PathVariable("id") long id, Model model) 
